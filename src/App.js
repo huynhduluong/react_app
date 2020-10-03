@@ -1,10 +1,17 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import StateLessComponent from "./components/StateLessComponent";
+import StateFull, { StateFullComponent } from "./components/StateFullComponent";
+import Home from "./BTChiaComponent/Home";
 
 function App() {
   return (
-    <div>My app</div>
+    <div>
+      {/* <StateLessComponent />
+      <StateFullComponent />
+      <StateFull /> */}
+      <Home />
+    </div>
   );
 }
 
