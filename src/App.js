@@ -1,6 +1,9 @@
 import React from "react";
 import "./App.css";
-import ChangeColor from "./ChangeColorCar";
+import BTGioHang from "./BTGioHang/BTGioHang";
+// import DemoProps from "./Props/DemoProps";
+// import DemoCourse from "./ListAndKeys/DemoCourse";
+// import ChangeColor from "./ChangeColorCar";
 // import DemoConditionalAndState from "./DemoLogin/DemoConditionalAndState";
 // import StateLessComponent from "./components/StateLessComponent";
 // import StateFull, { StateFullComponent } from "./components/StateFullComponent";
@@ -21,7 +24,11 @@ function App() {
       {/* <FunctionEvent /> */}
       {/* <ClassEvent /> */}
       {/* <DemoConditionalAndState/> */}
-      <ChangeColor/>
+      {/* <ChangeColor/> */}
+
+      {/* <DemoCourse /> */}
+      {/* <DemoProps/> */}
+      <BTGioHang />
     </div>
   );
 }
