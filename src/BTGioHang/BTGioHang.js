@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Modal from "./Modal";
 import SanPham from "./SanPham";
 
 //1. dàn layout
@@ -15,6 +16,7 @@ export default class BTGioHang extends Component {
   danhSachSanPham = [
     {
       maSP: "1",
+      giaThanh: 22000000,
       tenSP: "Iphone XS Max",
       linkAnh: "./img/applephone.jpg",
       manHinh: `"OLED, 6.5", 1242 x 2688 Pixels`,
@@ -26,6 +28,7 @@ export default class BTGioHang extends Component {
     },
     {
       maSP: "2",
+      giaThanh: 12000000,
       tenSP: "Meizu 16Xs",
       linkAnh: "./img/meizuphone.jpg",
       manHinh: `"AMOLED, FHD+ 2232 x 1080 pixels`,
@@ -37,6 +40,7 @@ export default class BTGioHang extends Component {
     },
     {
       maSP: "3",
+      giaThanh: 15000000,
       tenSP: "VinSmart Live",
       linkAnh: "./img/vsphone.jpg",
       manHinh: `"AMOLED, 6.2", Full HD+`,
@@ -59,16 +63,119 @@ export default class BTGioHang extends Component {
       ram: "4GB",
       rom: "64GB",
     },
+    danhSachGioHang: [],
   };
+
+  handleFindIndex = (sanPham, danhSachGioHang) => {
+    return danhSachGioHang.findIndex((item) => {
+      return item.maSP === sanPham.maSP;
+    });
+  };
+
+  handleAddSanPham = (sanPham) => {
+    //setState
+    let danhSachGioHang = [...this.state.danhSachGioHang];
+    /**
+     * tìm xem có tồn tại trong mảng hay không
+     * nếu có thì trả về index
+     * nếu không thì trả về -1
+     */
+    let index = this.handleFindIndex(sanPham, danhSachGioHang);
+    // danhSachGioHang.push(sanPham);
+    if (index !== -1) {
+      //tìm thấy
+      //cập nhật số lượng
+      danhSachGioHang[index].soLuong++;
+    } else {
+      //không tìm thấy
+      // set số lượng + push vào mảng
+      sanPham.soLuong = 1;
+      danhSachGioHang = [...danhSachGioHang, sanPham];
+    }
+
+    this.setState({
+      danhSachGioHang,
+    });
+  };
+
+  handleDetail = (sanPham) => {
+    //setState
+    this.setState({
+      sanPhamChiTiet: sanPham,
+    });
+  };
+
+  handleDeleteCart = (cart) => {
+    let danhSachGioHang = [...this.state.danhSachGioHang];
+    danhSachGioHang = danhSachGioHang.filter((item) => cart.maSP !== item.maSP);
+
+    this.setState({
+      danhSachGioHang,
+    });
+  };
+
+  renderSoLuongGioHang = () => {
+    return this.state.danhSachGioHang.reduce(
+      (sum, sanPham) => sum += sanPham.soLuong,
+      0
+    );
+  };
+
+  handleTangGiamSoLuong = (cart, status) => {
+    /**
+     * Các bước thực hiện
+     * 1. Lấy mảng giỏ hàng
+     * 2. tìm vị trí của phần tử được nhấn
+     * 3. check tăng hay giảm (status)
+     * 4. cập nhật lại state
+     */
+    //destructuring
+    let { danhSachGioHang } = this.state;
+    let index = this.handleFindIndex(cart, danhSachGioHang);
+
+    if (status) {
+      danhSachGioHang[index].soLuong++;
+    } else {
+      if (danhSachGioHang[index].soLuong > 1) {
+        danhSachGioHang[index].soLuong--;
+      }
+    }
+
+    this.setState({
+      danhSachGioHang,
+    });
+  };
+
+  renderTongTien = () => {
+    if (this.state.danhSachGioHang.length === 0) {
+      return;
+    }
+    let tongTien = this.state.danhSachGioHang.reduce(
+      (sum, sanPham) => sum += sanPham.soLuong * sanPham.giaThanh,
+      0
+    );
+    return (
+      <tr>
+        <td colSpan="4"></td>
+        <td className="text-center">Tổng tiền</td>
+        <td>{tongTien}</td>
+      </tr>
+    );
+  };
+
   renderSanPham = () => {
     return this.danhSachSanPham.map((sanPham, index) => {
       return (
         <div className="col-sm-4" key={index}>
-          <SanPham img={sanPham.linkAnh} name={sanPham.tenSP} ma={sanPham.maSP} />
+          <SanPham
+            sanPham={sanPham}
+            handleDetail={this.handleDetail}
+            handleAddSanPham={this.handleAddSanPham}
+          />
         </div>
       );
     });
-  };  
+  };
 
   render() {
     return (
@@ -81,90 +188,25 @@ export default class BTGioHang extends Component {
               data-toggle="modal"
               data-target="#modelId"
             >
-              Giỏ hàng (1)
+              Giỏ hàng ({this.renderSoLuongGioHang()})
             </button>
           </div>
           <div className="container">
             <div className="row">{this.renderSanPham()}</div>
           </div>
-          <div
-            className="modal fade"
-            id="modelId"
-            tabIndex={-1}
-            aria-labelledby="modelTitleId"
-            style={{ display: "none" }}
-            aria-hidden="true"
-          >
-            <div
-              className="modal-dialog"
-              role="document"
-              style={{ maxWidth: 1000 }}
-            >
-              <div className="modal-content">
-                <div className="modal-header">
-                  <h5 className="modal-title">Giỏ hàng</h5>
-                  <button
-                    type="button"
-                    className="close"
-                    data-dismiss="modal"
-                    aria-label="Close"
-                  >
-                    <span aria-hidden="true">×</span>
-                  </button>
-                </div>
-                <div className="modal-body">
-                  <table className="table">
-                    <thead>
-                      <tr>
-                        <th>Mã sản phẩm</th>
-                        <th>tên sản phẩm</th>
-                        <th>hình ảnh</th>
-                        <th>số lượng</th>
-                        <th>đơn giá</th>
-                        <th>thành tiền</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>1</td>
-                        <td>VinSmart Live</td>
-                        <td>
-                          <img src="./img/vsphone.jpg" width={50} 
-                          />
-                        </td>
-                        <td>
-                          <button>-</button>1<button>+</button>
-                        </td>
-                        <td>5700000</td>
-                        <td>5700000</td>
-                        <td>
-                          <button className="btn btn-danger">Delete</button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <div className="modal-footer">
-                  <button
-                    type="button"
-                    className="btn btn-secondary"
-                    data-dismiss="modal"
-                  >
-                    Close
-                  </button>
-                  <button type="button" className="btn btn-primary">
-                    Save
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+
+          <Modal
+            danhSachGioHang={this.state.danhSachGioHang}
+            handleDeleteCart={this.handleDeleteCart}
+            handleTangGiamSoLuong={this.handleTangGiamSoLuong}
+            renderTongTien={this.renderTongTien}
+          />
+
           <div className="row">
             <div className="col-sm-5">
               <img
                 className="img-fluid"
                 src={this.state.sanPhamChiTiet.linkAnh}
-
               />
             </div>
             <div className="col-sm-7">
