@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
-import BTGioHang from "./BTGioHang/BTGioHang";
+import BTGioHang from "./BTGioHangRedux/BTGioHang";
+// import BTGioHang from "./BTGioHang/BTGioHang";
 // import DemoProps from "./Props/DemoProps";
 // import DemoCourse from "./ListAndKeys/DemoCourse";
 // import ChangeColor from "./ChangeColorCar";
