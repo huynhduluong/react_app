@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import BTGioHang from "./BTGioHangRedux/BTGioHang";
+// import BTGioHang from "./BTGioHangRedux/BTGioHang";
 // import BTGioHang from "./BTGioHang/BTGioHang";
 // import DemoProps from "./Props/DemoProps";
 // import DemoCourse from "./ListAndKeys/DemoCourse";
@@ -12,6 +12,7 @@ import BTGioHang from "./BTGioHangRedux/BTGioHang";
 // import DemoDataBinding from "./DataBinding/DemoDataBinding";
 // import FunctionEvent from "./HandleEvent/FunctionEvent";
 // import ClassEvent from "./HandleEvent/ClassEvent";
+import Home from "./BTUserManagement";
 
 function App() {
   return (
@@ -29,7 +30,8 @@ function App() {
 
       {/* <DemoCourse /> */}
       {/* <DemoProps/> */}
-      <BTGioHang />
+      {/* <BTGioHang /> */}
+      <Home />
     </div>
   );
 }
