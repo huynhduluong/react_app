@@ -1,5 +1,7 @@
 import React from "react";
 import "./App.css";
+// import FormValidation from "./Form-Validation";
+import LifeCycle from "./LifeCycle";
 // import BTGioHang from "./BTGioHangRedux/BTGioHang";
 // import BTGioHang from "./BTGioHang/BTGioHang";
 // import DemoProps from "./Props/DemoProps";
@@ -12,7 +14,7 @@ import "./App.css";
 // import DemoDataBinding from "./DataBinding/DemoDataBinding";
 // import FunctionEvent from "./HandleEvent/FunctionEvent";
 // import ClassEvent from "./HandleEvent/ClassEvent";
-import Home from "./BTUserManagement";
+// import Home from "./BTUserManagement";
 
 function App() {
   return (
@@ -31,7 +33,9 @@ function App() {
       {/* <DemoCourse /> */}
       {/* <DemoProps/> */}
       {/* <BTGioHang /> */}
-      <Home />
+      {/* <Home /> */}
+      {/* <FormValidation /> */}
+      <LifeCycle />
     </div>
   );
 }
