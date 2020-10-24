@@ -5,9 +5,11 @@ import UserItem from "./UserItem";
 class Users extends Component {
   renderTable = () => {
     let { userList, keyword } = this.props;
-    if (keyword !== "") {
+    if (keyword.trim() !== "") {
       userList = userList.filter((item) => {
-        return item.name.toLowerCase().indexOf(keyword.toLowerCase()) !== -1;
+        return (
+          item.name.toLowerCase().indexOf(keyword.trim().toLowerCase()) !== -1
+        );
       });
     }
     return userList.map((item) => <UserItem user={item} key={item.id} />);

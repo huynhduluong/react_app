@@ -59,6 +59,7 @@ class Modal extends Component {
     //e.preventDefault(); giúp không load lại trang
     e.preventDefault();
     this.props.submitUser(this.state);
+    this.refs.btnClose.click(); //dùng để đóng form submit
   };
 
   render() {
@@ -82,6 +83,7 @@ class Modal extends Component {
                 className="close"
                 data-dismiss="modal"
                 aria-label="Close"
+                ref="btnClose"
               >
                 <span aria-hidden="true">×</span>
               </button>
