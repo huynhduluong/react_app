@@ -1,7 +1,8 @@
 import React from "react";
 import "./App.css";
+import BTBurgerReducer from "./BTBurger/components";
 // import FormValidation from "./Form-Validation";
-import LifeCycle from "./LifeCycle";
+// import LifeCycle from "./LifeCycle";
 // import BTGioHang from "./BTGioHangRedux/BTGioHang";
 // import BTGioHang from "./BTGioHang/BTGioHang";
 // import DemoProps from "./Props/DemoProps";
@@ -35,7 +36,8 @@ function App() {
       {/* <BTGioHang /> */}
       {/* <Home /> */}
       {/* <FormValidation /> */}
-      <LifeCycle />
+      {/* <LifeCycle /> */}
+      <BTBurgerReducer />
     </div>
   );
 }
