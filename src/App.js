@@ -1,7 +1,8 @@
 import React from "react";
 import "./App.css";
+import DemoHook from "./DemoHook";
 // import BTBurgerReducer from "./BTBurger/components";
-import HomeProtectedRoute from "./ProtectedRoute";
+// import HomeProtectedRoute from "./ProtectedRoute";
 // import FormValidation from "./Form-Validation";
 // import LifeCycle from "./LifeCycle";
 // import BTGioHang from "./BTGioHangRedux/BTGioHang";
@@ -39,7 +40,8 @@ function App() {
       {/* <FormValidation /> */}
       {/* <LifeCycle /> */}
       {/* <BTBurgerReducer /> */}
-      <HomeProtectedRoute />
+      {/* <HomeProtectedRoute /> */}
+      <DemoHook />
     </div>
   );
 }
