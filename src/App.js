@@ -1,6 +1,13 @@
 import React from "react";
 import "./App.css";
-import DemoHook from "./DemoHook";
+import ContextProvider from "./DemoHook/ContextProvider";
+import DemoUseContext from "./DemoHook/DemoUseContext";
+// import DemoUseReducer from "./DemoHook/DemoUseReducer";
+// import DemoUseRef from "./DemoHook/DemoUseRef";
+// import DemoUseMemo from "./DemoHook/DemoUseMemo";
+// import DemoUseCallback from "./DemoHook/DemoUseCallback";
+// import DemoHook from "./DemoHook";
+// import DemoUseEffect from "./DemoHook/DemoUseEffect";
 // import BTBurgerReducer from "./BTBurger/components";
 // import HomeProtectedRoute from "./ProtectedRoute";
 // import FormValidation from "./Form-Validation";
@@ -21,7 +28,7 @@ import DemoHook from "./DemoHook";
 
 function App() {
   return (
-    <div>
+    <ContextProvider>
       {/* <StateLessComponent />
       <StateFullComponent />
       <StateFull /> */}
@@ -41,8 +48,14 @@ function App() {
       {/* <LifeCycle /> */}
       {/* <BTBurgerReducer /> */}
       {/* <HomeProtectedRoute /> */}
-      <DemoHook />
-    </div>
+      {/* <DemoHook /> */}
+      {/* <DemoUseEffect /> */}
+      {/* <DemoUseCallback /> */}
+      {/* <DemoUseMemo /> */}
+      {/* <DemoUseRef /> */}
+      {/* <DemoUseReducer /> */}
+      <DemoUseContext />
+    </ContextProvider>
   );
 }
 
